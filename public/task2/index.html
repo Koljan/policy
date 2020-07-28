@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>TASK 2 - Calculator</title>
+</head>
+<body>
+<div class="container">
+    <div class="row align-items-center justify-content-center my-5">
+        <div id="calculate-form-wrapper" class="col-4">
+            <form id="calculate-form" action="calculator.php">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <input value="12000" id="estimated-car-value" name="estimated-car-value" type="number" required min="100" max="100000" step="1" class="form-control"
+                               placeholder="Estimated value of the car" aria-label="Estimated value of the car"
+                               aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <span class="input-group-text font-weight-bold" id="basic-addon2">€</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <input value="20" type="number" id="tax-percentage" name="tax-percentage" required min="0" max="100" class="form-control"
+                               placeholder="Tax percentage (0 - 100%)" aria-label="Tax percentage (0 - 100%)"
+                               aria-describedby="basic-addon3">
+                        <div class="input-group-append">
+                            <span class="input-group-text font-weight-bold" id="basic-addon3">%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <input value="3" type="number" id="nb-of-instalments" name="nb-of-instalments" required min="0" max="12" class="form-control"
+                               placeholder="Number of instalments (1 – 12)" aria-label="Number of instalments (1 – 12)"
+                               aria-describedby="basic-addon4">
+                    </div>
+                </div>
+                <button id="calculate-action-button" type="submit" class="btn btn-primary btn-block">Calculate</button>
+                <div id="calculate-form-errors"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="../src/scripts.js" defer></script>
+</body>
+</html>
