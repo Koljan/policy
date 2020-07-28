@@ -55,7 +55,7 @@
 		 */
 		private function setBasePremium()
 		{
-			$this->basePremium = round( $this->productBaseValue * ( $this->instalmentPolicyCommission / 100 ), 3 );
+			$this->basePremium = round( $this->productBaseValue * ( $this->instalmentPolicyCommission / 100 ), 2 );
 
 			return $this;
 		}
@@ -77,7 +77,7 @@
 		 */
 		private function setCommission()
 		{
-			$this->commission = round( $this->basePremium * ( $this->commissionPercent / 100 ), 3 );
+			$this->commission = round( $this->basePremium * ( $this->commissionPercent / 100 ),2 );
 
 			return $this;
 		}
@@ -90,7 +90,7 @@
 		 */
 		public function setTax()
 		{
-			$this->tax = round( $this->basePremium * ( $this->taxPercent / 100 ), 3 );
+			$this->tax = round( $this->basePremium * ( $this->taxPercent / 100 ), 2 );
 
 			return $this;
 		}
@@ -112,7 +112,7 @@
 		 */
 		public function setCost()
 		{
-			$this->cost = round( $this->basePremium + $this->commission + $this->tax, 3 );
+			$this->cost = round( $this->basePremium + $this->commission + $this->tax, 2 );
 
 			return $this;
 		}
@@ -145,13 +145,22 @@
 		}
 
 
+		/**
+		 * @return int
+		 */
+		public function getCommissionPercent(): int
+		{
+			return $this->commissionPercent;
+		}
+
+
 		public function jsonSerialize()
 		{
 			return [
-				'basePremium'                => round($this->getBasePremium(), 1),
-				'commission'                 => round($this->getCommission(),1),
-				'cost'                       => round($this->getCost(),1),
-				'tax'                        => round($this->getTax(),1),
+				'basePremium' => round( $this->getBasePremium(), 1 ),
+				'commission'  => round( $this->getCommission(), 1 ),
+				'cost'        => round( $this->getCost(), 1 ),
+				'tax'         => round( $this->getTax(), 1 ),
 			];
 
 		}

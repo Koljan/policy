@@ -21,16 +21,8 @@ let DataController = (function () {
 			xhReq = new XMLHttpRequest();
 			xhReq.open('POST', 'calculator.php?action=calculateInsurance', false);
 			xhReq.send(formData);
-			return JSON.parse(xhReq.responseText);
-			
-			// fetch('calculator.php?action=calculateInsurance',{
-			// 	method: 'POST',
-			// 	body: formData
-			// })
-			// .then((response) => response.json())
-			// .then((responseJSON) => {
-			// 	 console.log(responseJSON);
-			// });
+			return xhReq.responseText;
+			// return JSON.parse(xhReq.responseText);
 		}
 	}
 })();
@@ -49,13 +41,17 @@ let UIController = (function () {
 		let formWrapper;
 		formWrapper = document.querySelector(DOMstrings.formErrorDiv);
 		
-		
 		formErrors.forEach(function(e){
 			let html = `<small class="form-text text-muted">\n${e.elementLabel} : ${e.error}</small>`;
 			formWrapper.innerHTML +=(html);
 		});
 		
-	}
+	};
+	
+	let renderDataMatrix = function (data) {
+		console.log(data);
+		document.querySelector(".results").innerHTML = data;
+	};
 	
 	return {
 		renderFormErrors: function(formErrors)
@@ -67,6 +63,10 @@ let UIController = (function () {
 		},
 		clearErrorDiv: function () {
 			document.querySelector(DOMstrings.formErrorDiv).innerHTML = '';
+		},
+		showResults: function(data)
+		{
+			return renderDataMatrix(data);
 		}
 	}
 })();
@@ -91,11 +91,11 @@ let controller = (function (DataCtrl, UICtrl) {
 				UICtrl.renderFormErrors(DataCtrl.getFormErrors())
 			}else{
 				e.preventDefault();
-				var formData = new FormData(e.target.form);
+				let formData, results;
+				formData = new FormData(e.target.form);
 				formData.set('hour-submitted', new Date().getHours());
-				var test22 = DataCtrl.postData(formData);
-				// test22.then(v => console.log(v));
-				console.log(test22[0].basePremium);
+				results = DataCtrl.postData(formData);
+				UICtrl.showResults(results);
 			}
 		});
 	};
