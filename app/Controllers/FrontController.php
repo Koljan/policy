@@ -49,7 +49,7 @@
 				$html .= '<th scope="col">Policy</th>';
 				for ( $i = 1; $i <= count( $data['instalments'] ); $i ++ )
 				{
-					$html .= '<th scope="col">' . $i . ' Instalment</th>';
+					$html .= '<th scope="col">' . $i . '&nbsp;Instalment</th>';
 				}
 				$html .= '</tr>';
 				$html .= '</thead>';
