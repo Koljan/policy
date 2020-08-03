@@ -93,7 +93,7 @@ let controller = (function (DataCtrl, UICtrl) {
 				e.preventDefault();
 				let formData, results;
 				formData = new FormData(e.target.form);
-				formData.set('hour-submitted', new Date().getHours());
+				formData.set('time-offset', new Date().getTimezoneOffset());
 				results = DataCtrl.postData(formData);
 				UICtrl.showResults(results);
 			}

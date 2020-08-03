@@ -11,7 +11,6 @@
 		private $productBaseValue;
 		private $commission;
 		private $cost;
-		private $hourSubmitted;
 		private $instalmentPolicyCommission;
 		private $basePremium;
 		private $commissionPercent = 17;
@@ -19,13 +18,12 @@
 		private $tax;
 
 
-		public function __construct( int $productBaseValue, int $taxPercent, int $hourSubmitted = NULL )
+		public function __construct( int $productBaseValue, int $taxPercent, int $instalmentPolicyComission )
 		{
-			$this->productBaseValue           = $productBaseValue;
-			$this->taxPercent                 = $taxPercent;
-			$this->hourSubmitted              = $hourSubmitted;
-			$this->instalmentPolicyCommission = ( in_array( $hourSubmitted, [ 15, 16, 17, 18, 19 ] ) ) ? 13 : 11;
+			$this->productBaseValue  = $productBaseValue;
+			$this->taxPercent        = $taxPercent;
 
+			$this->setInstalmentPolicyCommission($instalmentPolicyComission);
 			$this->calculateInstalment();
 		}
 
@@ -77,7 +75,7 @@
 		 */
 		private function setCommission()
 		{
-			$this->commission = round( $this->basePremium * ( $this->commissionPercent / 100 ),2 );
+			$this->commission = round( $this->basePremium * ( $this->commissionPercent / 100 ), 2 );
 
 			return $this;
 		}
@@ -165,5 +163,17 @@
 
 		}
 
+
+		/**
+		 * @param mixed $instalmentPolicyCommission
+		 *
+		 * @return Instalment
+		 */
+		public function setInstalmentPolicyCommission( $instalmentPolicyCommission )
+		{
+			$this->instalmentPolicyCommission = $instalmentPolicyCommission;
+
+			return $this;
+		}
 
 	}
