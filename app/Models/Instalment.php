@@ -18,12 +18,12 @@
 		private $tax;
 
 
-		public function __construct( int $productBaseValue, int $taxPercent, int $instalmentPolicyComission )
+		public function __construct( int $productBaseValue, int $taxPercent, int $instalmentPolicyCommission )
 		{
-			$this->productBaseValue  = $productBaseValue;
-			$this->taxPercent        = $taxPercent;
+			$this->productBaseValue = $productBaseValue;
+			$this->taxPercent       = $taxPercent;
 
-			$this->setInstalmentPolicyCommission($instalmentPolicyComission);
+			$this->setInstalmentPolicyCommission( $instalmentPolicyCommission );
 			$this->calculateInstalment();
 		}
 
@@ -47,13 +47,11 @@
 
 
 		/**
-		 * @param mixed $basePremium
-		 *
 		 * @return Instalment
 		 */
 		private function setBasePremium()
 		{
-			$this->basePremium = round( $this->productBaseValue * ( $this->instalmentPolicyCommission / 100 ), 2 );
+			$this->basePremium = $this->productBaseValue * ( $this->instalmentPolicyCommission / 100 );
 
 			return $this;
 		}
@@ -69,26 +67,22 @@
 
 
 		/**
-		 * @param mixed $commission
-		 *
 		 * @return Instalment
 		 */
 		private function setCommission()
 		{
-			$this->commission = round( $this->basePremium * ( $this->commissionPercent / 100 ), 2 );
+			$this->commission = $this->basePremium * ( $this->commissionPercent / 100 );
 
 			return $this;
 		}
 
 
 		/**
-		 * @param mixed $tax
-		 *
 		 * @return Instalment
 		 */
 		public function setTax()
 		{
-			$this->tax = round( $this->basePremium * ( $this->taxPercent / 100 ), 2 );
+			$this->tax = $this->basePremium * ( $this->taxPercent / 100 );
 
 			return $this;
 		}
@@ -104,13 +98,11 @@
 
 
 		/**
-		 * @param mixed $cost
-		 *
 		 * @return Instalment
 		 */
 		public function setCost()
 		{
-			$this->cost = round( $this->basePremium + $this->commission + $this->tax, 2 );
+			$this->cost = $this->basePremium + $this->commission + $this->tax;
 
 			return $this;
 		}
@@ -155,10 +147,10 @@
 		public function jsonSerialize()
 		{
 			return [
-				'basePremium' => round( $this->getBasePremium(), 1 ),
-				'commission'  => round( $this->getCommission(), 1 ),
-				'cost'        => round( $this->getCost(), 1 ),
-				'tax'         => round( $this->getTax(), 1 ),
+				'basePremium' => $this->getBasePremium(),
+				'commission'  => $this->getCommission(),
+				'cost'        => $this->getCost(),
+				'tax'         => $this->getTax(),
 			];
 
 		}

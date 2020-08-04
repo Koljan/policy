@@ -55,6 +55,7 @@
 		{
 			for ( $i = 1; $i <= $this->nbOfInstalments; $i ++ )
 			{
+
 				$instalmentValue = intdiv( $this->carValue, $this->nbOfInstalments );
 				$instalmentValue += ( $i === $this->nbOfInstalments ) ? $this->carValue % $this->nbOfInstalments : 0;
 				$this->instalments->addInstalment( new Instalment( $instalmentValue, $this->tax, $this->getBasePremium() ) );
